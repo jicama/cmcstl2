@@ -450,7 +450,7 @@ STL2_OPEN_NAMESPACE {
 		readable<I> &&
 		requires(I& i, const I& ci) {
 			typename iterator_category_t<I>;
-			derived_from<iterator_category_t<I>, input_iterator_tag>;
+			requires derived_from<iterator_category_t<I>, input_iterator_tag>;
 			i++;
 		};
 
