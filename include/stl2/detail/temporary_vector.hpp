@@ -40,7 +40,7 @@ STL2_OPEN_NAMESPACE {
 		public:
 			temporary_buffer() = default;
 			temporary_buffer(std::ptrdiff_t n)
-			: temporary_buffer(std::get_temporary_buffer<T>(n)) {}
+			  : temporary_buffer({new T[n],n}) {}
 
 			T* data() const {
 				return alloc_.get();
@@ -77,9 +77,7 @@ STL2_OPEN_NAMESPACE {
 		public:
 			temporary_buffer() = default;
 			temporary_buffer(std::ptrdiff_t n)
-			: temporary_buffer(std::get_temporary_buffer<unsigned char>(
-				n * sizeof(T) + alignof(T) - 1))
-			{}
+			  : temporary_buffer({new T[n],n}) {}
 
 			T* data() const {
 				return aligned_;
